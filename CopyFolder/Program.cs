@@ -13,8 +13,15 @@ namespace CopyFolder
         {
             //string source = @"C:\Users\James\Desktop\Danphe\source";
             //string dest = @"C:\Users\James\Desktop\Danphe\destination";
-            Console.WriteLine("Enter Source Path: ");
-            string source = Console.ReadLine();
+            Console.WriteLine("How many files you want to copy?");
+            int num =  Convert.ToInt32(Console.ReadLine());
+            List<string> source = new List<string>();
+
+            for (int i = 0; i < num; i++)
+            {
+                Console.WriteLine("Enter Source Path: ");
+                source.Add(Console.ReadLine()); 
+            }
 
             Console.WriteLine("Enter Destination Path: ");
             string dest = Console.ReadLine();
@@ -24,12 +31,23 @@ namespace CopyFolder
             Console.ReadKey();
         }
 
-        public static void Copy(string sourceDirectory, string destDirectory)
+        public static void Copy(List<string> pathList, string destDirectory)
         {
-            var diSource = new DirectoryInfo(sourceDirectory);
-            var diDest = new DirectoryInfo(destDirectory);
+            string sourceDirectory;
 
-            CopyAll(diSource, diDest);
+
+            DirectoryInfo dirSource;
+            DirectoryInfo dirTarget = new DirectoryInfo(destDirectory);
+
+            for (int i = 0; i < pathList.Count; i++)
+            {
+                sourceDirectory = pathList.ElementAt(i);
+                
+                dirSource = new DirectoryInfo(sourceDirectory);
+
+                CopyAll(dirSource, dirTarget);
+            }
+
         }
 
         public static void CopyAll(DirectoryInfo source, DirectoryInfo dest)
