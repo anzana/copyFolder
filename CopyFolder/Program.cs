@@ -11,8 +11,6 @@ namespace CopyFolder
     {
         static void Main()
         {
-            //string source = @"C:\Users\James\Desktop\Danphe\source";
-            //string dest = @"C:\Users\James\Desktop\Danphe\destination";
             Console.WriteLine("How many files you want to copy?");
             int num =  Convert.ToInt32(Console.ReadLine());
             List<string> source = new List<string>();
